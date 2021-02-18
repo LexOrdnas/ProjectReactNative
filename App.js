@@ -1,21 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+//import { Text, View } from 'react-native';
+//import { styles } from './assets/css/main';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Home, Login, Produtos } from './views';
 
 export default function App() {
+
+  const Stack = createStackNavigator();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen 
+          name="Home" 
+          component={Home}
+          options={{
+            title: "Full Stack Eletro",
+            //headerShown: false,
+            headerStyle: {
+              backgroundColor: 'red'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              alignSelf: 'center'
+            }
+          }}  
+        />
+        
+        <Stack.Screen name="Login" options={{
+          headerShown: false
+        }} component={Login} />
+
+        <Stack.Screen name="Produtos" component={Produtos} />
+        {/*<Stack.Screen name="AreaRestrita" component={AreaRestrita} />*/}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
